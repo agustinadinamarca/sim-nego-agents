@@ -27,7 +27,7 @@ N=${#arr[@]}
 ## SETEO CORES Y SUBARRAYS
 #arr=("0 1 2 3 4" "0 5 6 7 8" "0 9 10 11 12" "0 13 14 15 16" "0 17 18 19 20")
 #N=${#arr[@]}
-C=8
+C=12
 
 C1=()
 C2=()
@@ -37,7 +37,10 @@ C5=()
 C6=()
 C7=()
 C8=()
-
+C9=()
+C10=()
+C11=()
+C12=()
 ## NÚMERO DE ELEMENTOS POR ARRAY
 let r=$N/$C 
 let resto=$N%$C
@@ -49,20 +52,10 @@ C4=("${arr[@]:3*$r:4*$r}")
 C5=("${arr[@]:4*$r:5*$r}")
 C6=("${arr[@]:5*$r:6*$r}")
 C7=("${arr[@]:6*$r:7*$r}")
-C8=("${arr[@]:7*$r:8*$r+$resto}")
+C8=("${arr[@]:7*$r:8*$r}")
+C9=("${arr[@]:8*$r:9*$r}")
+C10=("${arr[@]:9*$r:10*$r}")
+C11=("${arr[@]:10*$r:11*$r}")
+C12=("${arr[@]:11*$r:12*$r+$resto}")
 
-#echo ${C1[@]} ${#C1[@]} $N "srv1-4.sh"
-#echo ${C2[@]} ${#C2[@]} $N "srv1-4.sh"
-
-bash main.sh "${C1[@]}" & bash main.sh "${C2[@]}" & bash main.sh "${C3[@]}" & bash main.sh "${C4[@]}" & bash main.sh "${C5[@]}" & bash main.sh "${C6[@]}" & bash main.sh "${C7[@]}" & bash main.sh "${C8[@]}"
-
-## IMPRIMO EL CONTENIDO DEL ARRAY
-#for t in "${arr[@]}"
-#do
-#echo $t
-#done
-#echo "Contenido del archivo en el ARRAY"
-#echo $N
-
-# ¿cómo marco estados de las corridas? por si hay un corte?
-
+bash main.sh "${C1[@]}" & bash main.sh "${C2[@]}" & bash main.sh "${C3[@]}" & bash main.sh "${C4[@]}" & bash main.sh "${C5[@]}" & bash main.sh "${C6[@]}" & bash main.sh "${C7[@]}" & bash main.sh "${C8[@]}" & bash main.sh "${C9[@]}" & bash main.sh "${C10[@]}" & bash main.sh "${C11[@]}" & bash main.sh "${C12[@]}"
