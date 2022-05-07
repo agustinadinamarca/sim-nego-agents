@@ -64,7 +64,7 @@ if os.path.exists(cwd):
 	    "noise_std"
 	]
 
-	main_title = " ".join(s for s in titles)
+	main_title = " ".join(s for s in titles) + "\n"
 	file_to_save.write(main_title)
 	
 	for filename in lstFiles:

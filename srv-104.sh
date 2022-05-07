@@ -3,7 +3,7 @@
 ## LEO CADA CONFIGURACIÓN Y LA GUARDO EN UN ARRAY
 arr=()
 
-file="config_2.txt"
+file="config_srv_104.txt"
 
 if [[ -f "$file" ]]
 then
