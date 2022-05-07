@@ -18,17 +18,17 @@ k = int(np.trunc(N / n))
 # resto para agregar a la última partición
 r = N % n
 
-F1 = open("config_1.txt", "w")
+F1 = open("config_srv_103.txt", "w")
 for i in range(1, k+1):
     F1.write(content[i])
 F1.close()
     
-F2 = open("config_2.txt", "w")
+F2 = open("config_srv_104txt", "w")
 for i in range(k+1, 2*k+1):
     F2.write(content[i])
 F2.close()
     
-F3 = open("config_3.txt", "w")
+F3 = open("config_srv_106.txt", "w")
 for i in range(2*k+1, 3*k+1+r):
     F3.write(content[i])
 F3.close()
