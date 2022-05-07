@@ -1,9 +1,0 @@
-status,id,number_agents,alternatives_number,maximum_number_practical_arguments,maximum_number_epistemic_arguments,maximum_attacks_density_value,N,bullshiters_density,overcautios_density,resource_boundness_density,redundancy
-0,0,10,3,12,6,0.3,5,0,0.2,0.1,0.8
-0,1,10,3,12,6,0.3,5,0,0.2,0.5,0.8
-0,2,10,3,12,6,0.3,5,0,0.6,0.1,0.8
-0,3,10,3,12,6,0.3,5,0,0.6,0.5,0.8
-0,4,10,3,12,6,0.8,5,0,0.2,0.1,0.8
-0,5,10,3,12,6,0.8,5,0,0.2,0.5,0.8
-0,6,10,3,12,6,0.8,5,0,0.6,0.1,0.8
-0,7,10,3,12,6,0.8,5,0,0.6,0.5,0.8
