@@ -4,16 +4,13 @@
 arr=()
 
 file="config_srv_104.txt"
-
+n=0
 if [[ -f "$file" ]]
 then
-    i=0 n=0 # salto el header
+    #i=0 n=0 # salto el header
     while read -r line
         do
-            if [[ $n>=$i ]]
-                then
-                    arr+=("$line")
-            fi
+            arr+=("$line")
             ((n++))
 
     done < "$file"
