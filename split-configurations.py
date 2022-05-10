@@ -23,7 +23,7 @@ for i in range(1, k+1):
     F1.write(content[i])
 F1.close()
     
-F2 = open("config_srv_104txt", "w")
+F2 = open("config_srv_104.txt", "w")
 for i in range(k+1, 2*k+1):
     F2.write(content[i])
 F2.close()
