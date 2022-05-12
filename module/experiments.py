@@ -52,15 +52,16 @@ def execute_negotiations_with_taf_agents(N, taf_agents, all_ep, all_pr, attacks)
 	for agent in taf_agents:
 		X = agent.get_alternatives()
 		break
-	
+	system_aguments = all_ep + all_pr
 	lst = set() # almacena las alternativas ganadoras de cada agreement
 	times = []
+	red_i_m, red_i_s = metric_redundancy(taf_agents, len(taf_agents), attacks, system_aguments)
 	red_m = []
 	red_s = []
 	#bullshit_m = []
 	#bullshit_std = []
 	print("Start", N, "negotiations with", len(taf_agents), "TAFs agents...")
-	system_aguments = all_ep + all_pr
+	
 	for i in range(N):
 		t0 = perf_counter() # tiempo inicial
 		#if are_equal_agents_sets(taf_agents, taf_agents_original):
@@ -102,6 +103,7 @@ def execute_negotiations_with_taf_agents(N, taf_agents, all_ep, all_pr, attacks)
 	mean_time_by_negotiation = np.mean(times)
 	print("Average time by negotiation:", round(mean_time_by_negotiation, 3), "s")
 	print("Total time", N, "negotiations:", round(sum(times), 3), "s") 
+	print("Redundancy init:", red_i_m, red_i_s)
 	print("Redundancy final:", np.mean(red_m), np.mean(red_s))
 	#print("Bullshit?", np.mean(bullshit_m), np.mean(bullshit_std), np.std(bullshit_std)) 
 	agreements_number = len(lst) # cantidad de agreements
@@ -230,11 +232,14 @@ def pafs_negotiations(fname, number_agents, bullshiters_density, overcautios_den
 	NOISE_STD = []
 		
 	time = []
+
+	rmi_mean = []
+	rsi_std = []
 	
-	print(type(taf_agents))
+	#print(type(taf_agents))
 	print("overcautios_density:", overcautios_density)
 	print("bullshiters_density:", bullshiters_density)
-	print("semantics_list:", semantics_list)
+	#print("semantics_list:", semantics_list)
 	
 	# transformo a lista
 	taf_agents = list(taf_agents)
@@ -264,6 +269,11 @@ def pafs_negotiations(fname, number_agents, bullshiters_density, overcautios_den
 			#if are_equal_agents_sets(paf_agents, taf_agents) != True:
 			#	print("OK2, modificacion")
 			# paf y taf distintos
+
+		rmi, rsi = metric_redundancy(paf_agents, len(paf_agents), attacks, system_aguments)
+		rmi_mean.append(rmi)
+		rsi_std.append(rsi)
+
 		t0 = perf_counter() # tiempo inicial
 		# MEZCLO CONJUNTOS TAF Y PAF
 		all_agents = taf+paf_agents
@@ -333,6 +343,9 @@ def pafs_negotiations(fname, number_agents, bullshiters_density, overcautios_den
 	TP_std = np.std(TP)
 	TN_mean = np.mean(TN)
 	TN_std = np.std(TN)
+
+	red_init_mean = np.mean(rmi_mean)
+	red_init_std = np.std(rmi_mean)
 	#bullshit_mean = np.mean(Bullshit)
 	#bullshit_std = np.std(Bullshit)
 	#gwc_mean = np.mean(GWC)
@@ -369,7 +382,7 @@ def pafs_negotiations(fname, number_agents, bullshiters_density, overcautios_den
 	
 	#print("End", len(ssc) *M, "negotiations with", number_agents, "PAFs agents...")
 	print("End", M, "negotiations with", number_agents, "PAFs agents...")
-	return id_label, configuration_string, num_agents_R, num_agents_RI, D_mean, D_std, resource_boundness_density, time_neg_mean,time_neg_std, FP_mean, FP_std, FN_mean, FN_std, TP_mean, TP_std, TN_mean, TN_std, redund_mean, redund_std, signal_mean, signal_std, noise_mean, noise_std
+	return id_label, configuration_string, num_agents_R, num_agents_RI, D_mean, D_std, resource_boundness_density, time_neg_mean,time_neg_std, FP_mean, FP_std, FN_mean, FN_std, TP_mean, TP_std, TN_mean, TN_std, redund_mean, redund_std, signal_mean, signal_std, noise_mean, noise_std, red_init_mean, red_init_std
 	
 """ 
 def get_semantics_configurations(number_agents):

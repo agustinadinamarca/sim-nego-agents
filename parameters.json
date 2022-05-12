@@ -1,14 +1,14 @@
 {
 	"parameters":{
-		"number_agents":[10],
+		"number_agents":[8],
 	 	"alternatives_number":[3],
 	  	"maximum_number_practical_arguments":[12],
-	   	"maximum_number_epistemic_arguments":[6],
-	    "maximum_attacks_density_value":[0.3, 0.8],
+	   	"maximum_number_epistemic_arguments":[4],
+	    "maximum_attacks_density_value":[0.7],
 	    "N":[5],
 	 	"bullshiters_density":[0],
-	    "overcautios_density":[0.2, 0.6],
-	    "resource_boundness_density":[0.1, 0.5],
-	    "redundancy" :[0.8]
+	    "overcautios_density":[0.1, 0.3, 0.5, 0.7, 0.9],
+	    "resource_boundness_density":[0.2, 0.8],
+	    "redundancy" :[0.5]
 	}	
 }

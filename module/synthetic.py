@@ -153,7 +153,8 @@ def create_arguments(number_agents, maximum_number_practical_arguments, maximum_
 		
 		maximum_attacks_number = practical_arguments_number * epistemic_arguments_number + epistemic_arguments_number * (epistemic_arguments_number - 1) / 2
 		
-		attacks_density_value = uniform(0.1, maximum_attacks_density_value)
+		#attacks_density_value = uniform(0.1, maximum_attacks_density_value)
+		attacks_density_value = maximum_attacks_density_value
 
 		attacks_number = round(maximum_attacks_number * attacks_density_value, 0)
 		
