@@ -232,6 +232,7 @@ def metric_redundancy(agents, num_ag, system_attacks, system_aguments):
 
 	return mean(obj), std(obj)
 
+"""
 def metric_signal(agents, num_all_attacks):
 	signal = []
 	for i in range(len(agents)):
@@ -247,3 +248,55 @@ def metric_noise(agents, num_all_attacks):
 		tot = agents[i].get_num_I()
 		noise.append(tot / num_all_attacks)
 	return mean(noise), std(noise)
+
+"""
+
+# metric signal true... (acc in paf y acc in taf_plus)
+def metric_signal(agents_paf, taf_plus):
+	taf_plus_acceptable_arguments_labels = taf_plus.get_acceptable_arguments()
+
+	bullshit = []
+
+	append = bullshit.append
+
+	for agent_paf in agents_paf:
+		agent_paf_acceptable_arguments_labels = agent_paf.get_acceptable_arguments()
+		if len(agent_paf_acceptable_arguments_labels) > 0:
+			normalization_factor = len(agent_paf_acceptable_arguments_labels)
+
+			acc_in_paf_and_in_taf_plus = len(agent_paf_acceptable_arguments_labels.intersection(taf_plus_acceptable_arguments_labels))
+			
+			len_bullshit = float(acc_in_paf_and_in_taf_plus / normalization_factor)
+		else:
+			len_bullshit = 0
+
+		append(len_bullshit)
+
+	mean_bullshit, std_bullshit = mean(bullshit), std(bullshit)
+
+	return mean_bullshit, std_bullshit
+
+# metric noise true (acc in paf but not in taf_plus)
+def metric_noise(agents_paf, taf_plus):
+	taf_plus_acceptable_arguments_labels = taf_plus.get_acceptable_arguments()
+
+	bullshit = []
+
+	append = bullshit.append
+
+	for agent_paf in agents_paf:
+		agent_paf_acceptable_arguments_labels = agent_paf.get_acceptable_arguments()
+		if len(agent_paf_acceptable_arguments_labels) > 0:
+			normalization_factor = len(agent_paf_acceptable_arguments_labels)
+
+			acc_in_paf_and_not_taf_plus = len(agent_paf_acceptable_arguments_labels.difference(taf_plus_acceptable_arguments_labels))
+			
+			len_bullshit = float(acc_in_paf_and_not_taf_plus / normalization_factor)
+		else:
+			len_bullshit = 0
+
+		append(len_bullshit)
+
+	mean_bullshit, std_bullshit = mean(bullshit), std(bullshit)
+
+	return mean_bullshit, std_bullshit

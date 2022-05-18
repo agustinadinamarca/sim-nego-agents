@@ -166,11 +166,11 @@ def exp(idn, number_agents, alternatives_number, maximum_number_practical_argume
 	data_to_save.write(configuration_string + " ")
 	data_to_save.write(str(num_agents_R) + " ")
 	data_to_save.write(str(num_agents_RI) + " ")
-	data_to_save.write(str(bullshiters_density) + " ")
-	data_to_save.write(str(overcautios_density) + " ")
+	#data_to_save.write(str(bullshiters_density) + " ")  REPETIDO
+	#data_to_save.write(str(overcautios_density) + " ")  REPETIDO
 	data_to_save.write(str(mean(D_mean_l)) + " ")
 	data_to_save.write(str(mean(D_std_l)) + " ")
-	data_to_save.write(str(resource_boundness_density) + " ")
+	#data_to_save.write(str(resource_boundness_density) + " ")  REPETIDO
 	data_to_save.write(str(mean(time_neg_mean_l)) + " ")
 	data_to_save.write(str(mean(time_neg_std_l)) + " ")
 	data_to_save.write(str(mean(FP_mean_l)) + " ")
@@ -187,15 +187,17 @@ def exp(idn, number_agents, alternatives_number, maximum_number_practical_argume
 	#data_to_save.write(str(mean(gwc_std_l)) + " ")
 	#data_to_save.write(str(mean(lwc_mean_l)) + " ")
 	#data_to_save.write(str(mean(lwc_std_l)) + " ")
-	data_to_save.write(str(redundancy) + " ")
+	#data_to_save.write(str(redundancy) + " ")   REPETIDO
 	data_to_save.write(str(mean(red_mean_l)) + " ")
 	data_to_save.write(str(mean(red_std_l)) + " ")
+
 	data_to_save.write(str(mean(signal_mean_l)) + " ")
 	data_to_save.write(str(mean(signal_std_l)) + " ")
 	data_to_save.write(str(mean(noise_mean_l)) + " ")
-	data_to_save.write(str(mean(noise_std_l)) + " ")
-	data_to_save.write(str(mean(red_init_m)) + " ")
-	data_to_save.write(str(mean(red_init_s)) + "\n")
+	data_to_save.write(str(mean(noise_std_l)) + "\n")
+
+	#data_to_save.write(str(mean(red_init_m)) + " ")
+	#data_to_save.write(str(mean(red_init_s)) + "\n")
 
 	data_to_save.close()
 

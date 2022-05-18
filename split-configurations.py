@@ -2,6 +2,7 @@
 import numpy as np
 
 # Obtengo contenido por filas
+print('Splitting configurations.txt file...')
 F = open("configurations.txt", "r")
 content = F.readlines()
 F.close()
@@ -32,4 +33,5 @@ F3 = open("config_srv_106.txt", "w")
 for i in range(2*k+1, 3*k+1+r):
     F3.write(content[i])
 F3.close()
+print('Done.')
 

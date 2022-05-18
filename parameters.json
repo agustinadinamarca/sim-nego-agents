@@ -9,6 +9,6 @@
 	 	"bullshiters_density":[0],
 	    "overcautios_density":[0.1, 0.3, 0.5, 0.7, 0.9],
 	    "resource_boundness_density":[0.2, 0.8],
-	    "redundancy" :[0.5]
+	    "redundancy" :[0.8]
 	}	
 }

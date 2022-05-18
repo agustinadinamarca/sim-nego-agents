@@ -775,3 +775,42 @@ def modify_agent_arguments_bases(practical_base, epistemic_base, external_episte
 	epistemic_base_final, practical_base_final = make_indeterminations_in_bases(epistemic_base_new, practical_base_new, to_modify)
 
 	return practical_base_final, epistemic_base_final
+
+
+def get_major_agent_from_agents(agents):
+
+	name = "MajorAgent"
+
+	alternatives = set()
+	practical_arguments, epistemic_arguments = [], []
+	count = 0
+
+	for agent in agents:
+		if count == 0:
+			alternatives = agent.get_alternatives()
+		count = count + 1
+		practical_arguments = practical_arguments + [argument for argument in agent.get_practical_base_structures()]
+		epistemic_arguments = epistemic_arguments + [argument for argument in agent.get_epistemic_base_structures()]
+
+	# remuevo argumentos duplicados
+	my_args_p = []
+	to_rem_p = []
+	for a in practical_arguments:
+		if a[0] not in my_args_p:
+			my_args_p.append(a[0])
+		else:
+			to_rem_p.append(a)
+	for i in to_rem_p:
+		practical_arguments.remove(i)
+
+	my_args_e = []
+	to_rem_e = []
+	for a in epistemic_arguments:
+		if a[0] not in my_args_e:
+			my_args_e.append(a[0])
+		else:
+			to_rem_e.append(a)
+	for i in to_rem_e:
+		epistemic_arguments.remove(i)
+
+	return Agent("MajorAgent", alternatives, epistemic_arguments, practical_arguments, semantic_r=True)
