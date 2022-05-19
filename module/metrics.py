@@ -209,26 +209,26 @@ def metric_d(optimal, other):
     elif other != optimal and other != -1:
         return 1
 
+
 def metric_redundancy(agents, num_ag, system_attacks, system_aguments):
+	obj=[]
 	# arguments
-	mean_args = []
-	for arg in system_aguments:
-		count = 0
-		for ag in agents:
+	ta=len(system_aguments)
+	for ag in agents:
+		count=0
+		for arg in system_aguments:
 			if arg in ag.all_arguments_labels:
 				count += 1
-		mean_args.append(count / num_ag)
+		obj.append(float(count/ta))
 
 	# attacks
-	mean_attacks = []
-	for at in system_attacks:
-		count = 0
-		for ag in agents:
+	tg=len(system_attacks)
+	for ag in agents:
+		count=0
+		for at in system_attacks:
 			if at in ag.get_all_attacks():
-				count += 1
-		mean_attacks.append(count / num_ag)
-
-	obj = mean_args + mean_attacks
+				count+= 1
+		obj.append(float(count/tg))
 
 	return mean(obj), std(obj)
 
@@ -252,9 +252,7 @@ def metric_noise(agents, num_all_attacks):
 """
 
 # metric signal true... (acc in paf y acc in taf_plus)
-def metric_signal(agents_paf, taf_plus):
-	taf_plus_acceptable_arguments_labels = taf_plus.get_acceptable_arguments()
-
+def metric_signal(agents_paf, acc_args_taf_plus):
 	bullshit = []
 
 	append = bullshit.append
@@ -264,7 +262,7 @@ def metric_signal(agents_paf, taf_plus):
 		if len(agent_paf_acceptable_arguments_labels) > 0:
 			normalization_factor = len(agent_paf_acceptable_arguments_labels)
 
-			acc_in_paf_and_in_taf_plus = len(agent_paf_acceptable_arguments_labels.intersection(taf_plus_acceptable_arguments_labels))
+			acc_in_paf_and_in_taf_plus = len(agent_paf_acceptable_arguments_labels.intersection(acc_args_taf_plus))
 			
 			len_bullshit = float(acc_in_paf_and_in_taf_plus / normalization_factor)
 		else:
@@ -277,9 +275,7 @@ def metric_signal(agents_paf, taf_plus):
 	return mean_bullshit, std_bullshit
 
 # metric noise true (acc in paf but not in taf_plus)
-def metric_noise(agents_paf, taf_plus):
-	taf_plus_acceptable_arguments_labels = taf_plus.get_acceptable_arguments()
-
+def metric_noise(agents_paf, acc_args_taf_plus):
 	bullshit = []
 
 	append = bullshit.append
@@ -289,7 +285,7 @@ def metric_noise(agents_paf, taf_plus):
 		if len(agent_paf_acceptable_arguments_labels) > 0:
 			normalization_factor = len(agent_paf_acceptable_arguments_labels)
 
-			acc_in_paf_and_not_taf_plus = len(agent_paf_acceptable_arguments_labels.difference(taf_plus_acceptable_arguments_labels))
+			acc_in_paf_and_not_taf_plus = len(agent_paf_acceptable_arguments_labels.difference(acc_args_taf_plus))
 			
 			len_bullshit = float(acc_in_paf_and_not_taf_plus / normalization_factor)
 		else:
@@ -300,3 +296,26 @@ def metric_noise(agents_paf, taf_plus):
 	mean_bullshit, std_bullshit = mean(bullshit), std(bullshit)
 
 	return mean_bullshit, std_bullshit
+
+
+def metric_signal_and_noise(agents_paf, acc_args_taf_plus, num_args):
+	signal = []
+	noise = []
+	for agent in agents_paf:
+		signal_ag=0
+		noise_ag=0
+		ag_acc_args_labels = agent.get_acceptable_arguments()
+		if len(ag_acc_args_labels) > 0:
+			nn = len(ag_acc_args_labels.difference(acc_args_taf_plus))
+			noise_ag = float(nn/num_args)
+			ss = len(ag_acc_args_labels.intersection(acc_args_taf_plus))
+			signal_ag = float(ss/num_args)
+			#print("* ", nn, ss, len(acc_args_taf_plus), num_args)
+		else:
+			signal_ag=0
+			noise_ag=1
+		#print(signal_ag, noise_ag, signal_ag + noise_ag)
+		signal.append(signal_ag)
+		noise.append(noise_ag)
+
+	return mean(signal), std(signal), mean(noise), std(noise)

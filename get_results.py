@@ -60,7 +60,8 @@ if os.path.exists(cwd1):
 		"TP_std",
 		"TN_mean",
 		"TN_std",
-		#"redundancy_init_theory",
+		#"redundancy_init_mean",
+		#"redundancy_init_std",
 	    "redundancy_final_mean",
 	    "redundancy_final_std",
 	    "signal_mean",
@@ -69,6 +70,7 @@ if os.path.exists(cwd1):
 	    "noise_std",
 	    #"redundancy_init_mean",
 	    #"redundancy_init_std"
+	    "noise_signal"
 	]
 
 	main_title = " ".join(s for s in titles) + "\n"

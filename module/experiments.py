@@ -186,6 +186,7 @@ def pafs_negotiations(fname, number_agents, bullshiters_density, overcautios_den
 	#data_to_save = open(fname, "w")
 	
 	taf_plus = get_major_agent_from_agents(taf_agents)
+	acc_args_taf_plus = taf_plus.get_acceptable_arguments()
 	
 	#sc = get_semantics_configurations(number_agents)
 	
@@ -209,7 +210,7 @@ def pafs_negotiations(fname, number_agents, bullshiters_density, overcautios_den
 	# Porcentaje puro Overcautios y resto taf
 	if overcautios_density > 0:
 		num_overcautios = int(number_agents * overcautios_density)
-		if overcautios_density < 1:
+		if num_overcautios < 1:
 			num_overcautios = 1
 		for k in range(num_overcautios):
 			semantics_list.append(False)
@@ -306,9 +307,10 @@ def pafs_negotiations(fname, number_agents, bullshiters_density, overcautios_den
 		#sigm, sigs = metric_signal(paf_agents_final, len(attacks))
 		#noim, nois = metric_noise(paf_agents_final, len(attacks))
 
-		sigm, sigs = metric_signal(paf_agents_final, taf_plus)
-		noim, nois = metric_noise(paf_agents_final, taf_plus)
+		#sigm, sigs = metric_signal(paf_agents_final, acc_args_taf_plus)
+		#noim, nois = metric_noise(paf_agents_final, acc_args_taf_plus)
 
+		sigm, sigs, noim, nois = metric_signal_and_noise(paf_agents_final, acc_args_taf_plus, len(system_aguments))
 
 
 
@@ -339,9 +341,9 @@ def pafs_negotiations(fname, number_agents, bullshiters_density, overcautios_den
 		
 
 	signal_mean = np.mean(SIGNAL_MEAN)
-	signal_std = np.mean(SIGNAL_STD)
+	signal_std = np.std(SIGNAL_MEAN)
 	noise_mean = np.mean(NOISE_MEAN)
-	noise_std = np.mean(NOISE_STD)
+	noise_std = np.std(NOISE_MEAN)
 	redund_mean = np.mean(RED_M)
 	redund_std = np.mean(RED_S)
 	D_mean = np.mean(D)
