@@ -299,21 +299,34 @@ def metric_noise(agents_paf, acc_args_taf_plus):
 
 
 def metric_signal_and_noise(agents_paf, acc_args_taf_plus, num_args):
+	#print("DEBUG. Number of arguments taf plus: ", num_args)
+	#print("DEBUG. List of all arguments: ", acc_args_taf_plus)
 	signal = []
 	noise = []
 	for agent in agents_paf:
 		signal_ag=0
 		noise_ag=0
 		ag_acc_args_labels = agent.get_acceptable_arguments()
-		if len(ag_acc_args_labels) > 0:
-			nn = len(ag_acc_args_labels.difference(acc_args_taf_plus))
-			noise_ag = float(nn/num_args)
-			ss = len(ag_acc_args_labels.intersection(acc_args_taf_plus))
-			signal_ag = float(ss/num_args)
-			#print("* ", nn, ss, len(acc_args_taf_plus), num_args)
+
+		if len(acc_args_taf_plus) > 0:
+
+			if len(ag_acc_args_labels) > 0:
+				nn = len(ag_acc_args_labels.difference(acc_args_taf_plus))
+				noise_ag = float(nn/(num_args - len(acc_args_taf_plus)))
+				ss = len(ag_acc_args_labels.intersection(acc_args_taf_plus))
+				signal_ag = float(ss/len(acc_args_taf_plus))
+				#print("* ", nn, ss, len(acc_args_taf_plus), num_args)
+			else:
+				signal_ag=0
+				noise_ag=1
 		else:
-			signal_ag=0
-			noise_ag=1
+			if len(ag_acc_args_labels) > 0:
+				signal_ag=1
+				noise_ag=float(len(ag_acc_args_labels)/num_args)
+			else:
+				signal_ag=1
+				noise_ag=0
+
 		#print(signal_ag, noise_ag, signal_ag + noise_ag)
 		signal.append(signal_ag)
 		noise.append(noise_ag)

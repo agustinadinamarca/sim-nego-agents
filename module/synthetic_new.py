@@ -813,4 +813,11 @@ def get_major_agent_from_agents(agents):
 	for i in to_rem_e:
 		epistemic_arguments.remove(i)
 
+	#print("DEBUG IN MAJOR AGENT. Num EP_ARGS: ", len(epistemic_arguments))
+	#print("DEBUG IN MAJOR AGENT. Num PR_ARGS: ", len(practical_arguments))
+	#print("DEBUG. ", epistemic_arguments)
+	#print("DEBUG. ", practical_arguments)
+
+
+
 	return Agent("MajorAgent", alternatives, epistemic_arguments, practical_arguments, semantic_r=True)

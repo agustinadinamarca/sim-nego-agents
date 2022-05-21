@@ -14,7 +14,7 @@
 #resource_boundness_density
 #redundancy
 
-line="0,288,5,3,8,4,0.6,5,0.5,0,0.8,0.7"
+line="0,288,5,3,8,4,0.6,3,0.5,0,0.8,0.7"
 python3 module/main.py "$line"
 
 

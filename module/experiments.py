@@ -103,8 +103,8 @@ def execute_negotiations_with_taf_agents(N, taf_agents, all_ep, all_pr, attacks)
 	mean_time_by_negotiation = np.mean(times)
 	print("Average time by negotiation:", round(mean_time_by_negotiation, 3), "s")
 	print("Total time", N, "negotiations:", round(sum(times), 3), "s") 
-	print("Redundancy init:", red_i_m, red_i_s)
-	print("Redundancy final:", np.mean(red_m), np.mean(red_s))
+	#print("Redundancy init:", red_i_m, red_i_s)
+	#print("Redundancy final:", np.mean(red_m), np.mean(red_s))
 	#print("Bullshit?", np.mean(bullshit_m), np.mean(bullshit_std), np.std(bullshit_std)) 
 	agreements_number = len(lst) # cantidad de agreements
 	optimal_agreements = lst # set de soluciones óptimas
@@ -185,7 +185,7 @@ def pafs_negotiations(fname, number_agents, bullshiters_density, overcautios_den
 	
 	#data_to_save = open(fname, "w")
 	
-	taf_plus = get_major_agent_from_agents(taf_agents)
+	taf_plus = get_taf_plus_agent(taf_agents)
 	acc_args_taf_plus = taf_plus.get_acceptable_arguments()
 	
 	#sc = get_semantics_configurations(number_agents)

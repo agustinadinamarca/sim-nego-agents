@@ -381,6 +381,7 @@ class Agent:
 		#maximal_cfs = self.get_maximal_cfs()
 		#maximal_admisibles_sets = self.maximal_admisible_cfs(maximal_cfs) #extensiones preferidas
 		maximal_admisibles_sets = self.maximal_admisible_cfs()
+		#print("DEBUG ACC_ARGS: ", len(maximal_admisibles_sets))
 		acceptable_arguments = set()
 
 		for admisible_set in maximal_admisibles_sets:
