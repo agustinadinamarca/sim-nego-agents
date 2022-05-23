@@ -196,9 +196,9 @@ def exp(idn, number_agents, alternatives_number, maximum_number_practical_argume
 	data_to_save.write(str(mean(signal_mean_l)) + " ")
 	data_to_save.write(str(std(signal_mean_l)) + " ")
 	data_to_save.write(str(mean(noise_mean_l)) + " ")
-	data_to_save.write(str(std(noise_mean_l)) + "\n")
-	#snm = mean(signal_mean_l) + mean(noise_mean_l)
-	#data_to_save.write(str(snm) + "\n")
+	data_to_save.write(str(std(noise_mean_l)) + " ")
+	snm = mean(signal_mean_l) + mean(noise_mean_l)
+	data_to_save.write(str(snm) + "\n")
 
 
 
