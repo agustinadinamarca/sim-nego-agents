@@ -329,3 +329,17 @@ def metric_signal_and_noise(agents_paf, acc_args_taf_plus, num_args):
 
 	#print("final:", mean(signal), mean(noise))
 	return mean(signal), std(signal), mean(noise), std(noise)
+
+
+def metric_bis_1(agents_paf):
+	"""
+	promedio y desviacion estandar de la cantidad de 
+	argumentos aceptables que tienen los agentes
+	"""
+	num = []
+	for agent in agents_paf:
+		n_ag_acc_args = len(agent.get_acceptable_arguments())
+		num.append(n_ag_acc_args)
+	return mean(num)
+
+

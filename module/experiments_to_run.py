@@ -118,6 +118,8 @@ def exp(idn, number_agents, alternatives_number, maximum_number_practical_argume
 	red_init_m = []
 	red_init_s = []
 		
+	m_bis_1 = []
+
 	for f in range(N):
 		
 		status = False
@@ -132,7 +134,7 @@ def exp(idn, number_agents, alternatives_number, maximum_number_practical_argume
 				optimal_agreements = list(optimal_agreements)[0]
 				status = True	
 		
-		id_label, configuration_string, num_agents_R, num_agents_RI, D_mean, D_std, resource_boundness_density, time_neg_mean,time_neg_std,FP_mean, FP_std, FN_mean, FN_std, TP_mean, TP_std, TN_mean, TN_std, red_mean, red_std, signal_mean, signal_std, noise_mean, noise_std, redmi, redsi = pafs_negotiations(fname, number_agents, bullshiters_density, overcautios_density, N, taf_agents, resource_boundness_density, taf_agents_final, optimal_agreements, configuration_string, id_label, all_ep, all_pr, attacks)
+		id_label, configuration_string, num_agents_R, num_agents_RI, D_mean, D_std, resource_boundness_density, time_neg_mean,time_neg_std,FP_mean, FP_std, FN_mean, FN_std, TP_mean, TP_std, TN_mean, TN_std, red_mean, red_std, signal_mean, signal_std, noise_mean, noise_std, redmi, redsi, mb1 = pafs_negotiations(fname, number_agents, bullshiters_density, overcautios_density, N, taf_agents, resource_boundness_density, taf_agents_final, optimal_agreements, configuration_string, id_label, all_ep, all_pr, attacks)
 		
 		D_mean_l.append(D_mean)
 		D_std_l.append(D_std)
@@ -160,6 +162,7 @@ def exp(idn, number_agents, alternatives_number, maximum_number_practical_argume
 		noise_std_l.append(noise_std)
 		red_init_m.append(redmi)
 		red_init_s.append(redsi)
+		m_bis_1.append(mb1)
 		
 
 	data_to_save.write(id_label + " ")
@@ -198,7 +201,10 @@ def exp(idn, number_agents, alternatives_number, maximum_number_practical_argume
 	data_to_save.write(str(mean(noise_mean_l)) + " ")
 	data_to_save.write(str(std(noise_mean_l)) + " ")
 	snm = mean(signal_mean_l) + mean(noise_mean_l)
-	data_to_save.write(str(snm) + "\n")
+	data_to_save.write(str(snm) + " ")
+
+	data_to_save.write(str(mean(m_bis_1)) + " ")
+	data_to_save.write(str(std(m_bis_1)) + "\n")
 
 
 

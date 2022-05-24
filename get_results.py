@@ -70,7 +70,9 @@ if os.path.exists(cwd1):
 	    "noise_std",
 	    #"redundancy_init_mean",
 	    #"redundancy_init_std"
-	    "check_noi_sig"
+	    "check_noi_sig",
+	    "bis_1_mean",
+	    "bis_1_std"
 	]
 
 	main_title = " ".join(s for s in titles) + "\n"
