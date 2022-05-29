@@ -3,6 +3,7 @@
 
 import os
 import sys
+import pandas as pd
 # se ejecuta al final del file .sh
 # en la carpeta results, en la carpeta del experimento
 # toma cada csv metric y genera uno solo con toda la información
@@ -29,7 +30,8 @@ if os.path.exists(cwd1):
 				#F.write(nombreFichero.replace("__metrics_f", "")+"\n")
 	#F.close()
 	name = cwd+"/results-srv-"+num+".csv"
-	file_to_save = open(name, "a+")
+	#file_to_save = open(name, "a+")
+	file_to_save = open(name, "w")
 	
 	titles = [
 		"id",
@@ -87,6 +89,11 @@ if os.path.exists(cwd1):
 			file_to_save.write(line)
 		#os.remove(filename)
 	file_to_save.close()
+
+
+	combined_csv = pd.read_csv(name, sep=' ')
+	combined_csv = combined_csv.sort_values('id', ascending=True)
+	combined_csv.to_csv(name, index=False, encoding='utf-8-sig')
 	
 	
 

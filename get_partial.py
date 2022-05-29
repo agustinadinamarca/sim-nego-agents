@@ -28,7 +28,8 @@ if os.path.exists(cwd1):
 				if "__metrics_f" in nombreFichero:
 					lstFiles.append(cwd1+nombreFichero+extension)
 	name = cwd+"/partial-srv-"+num+".csv"
-	file_to_save = open(name, "a+")
+	#file_to_save = open(name, "a+")
+	file_to_save = open(name, "w")
 	
 	titles = [
 		"id",
