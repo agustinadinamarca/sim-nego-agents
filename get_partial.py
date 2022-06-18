@@ -88,7 +88,7 @@ if os.path.exists(cwd1):
 	
 	r = pd.read_csv("partial-srv-"+num+".csv", sep=' ')
 	r = r.sort_values('id', ascending=True)
-	r.to_csv("partial-res-srv-"+num+".csv", index=True, encoding='utf-8-sig')
+	r.to_csv("partial-res-srv-"+num+".csv", index=False, encoding='utf-8-sig')
 
 	os.remove(name)
 

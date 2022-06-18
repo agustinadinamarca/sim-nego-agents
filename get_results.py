@@ -93,7 +93,7 @@ if os.path.exists(cwd1):
 
 	combined_csv = pd.read_csv(name, sep=' ')
 	combined_csv = combined_csv.sort_values('id', ascending=True)
-	combined_csv.to_csv(name, index=True, encoding='utf-8-sig')
+	combined_csv.to_csv(name, index=False, encoding='utf-8-sig')
 	
 	
 
