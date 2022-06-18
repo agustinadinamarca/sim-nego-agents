@@ -12,7 +12,7 @@
 #TN = N / (Re + Ne)
 #FP = In / (Re + Ne)
 #FN = 0
-
+import numpy as np
 from numpy import mean, std
 
 def get_re_taf(agent_taf):
@@ -124,7 +124,7 @@ def metric(agents_taf, agents_paf):
 		append_FP(fp)
 		append_FN(fn)
 	
-	return mean(TP), mean(TN), mean(FP), mean(FN)
+	return mean(TP, dtype=np.float32), mean(TN, dtype=np.float32), mean(FP, dtype=np.float32), mean(FN, dtype=np.float32)
 	
 """	
 def metric_bullshit(agents_paf, taf_plus):
@@ -230,7 +230,7 @@ def metric_redundancy(agents, num_ag, system_attacks, system_aguments):
 				count+= 1
 		obj.append(float(count/tg))
 
-	return mean(obj), std(obj)
+	return mean(obj, dtype=np.float32), std(obj, dtype=np.float32)
 
 """
 def metric_signal(agents, num_all_attacks):
@@ -270,7 +270,7 @@ def metric_signal(agents_paf, acc_args_taf_plus):
 
 		append(len_bullshit)
 
-	mean_bullshit, std_bullshit = mean(bullshit), std(bullshit)
+	mean_bullshit, std_bullshit = mean(bullshit, dtype=np.float32), std(bullshit, dtype=np.float32)
 
 	return mean_bullshit, std_bullshit
 
@@ -293,7 +293,7 @@ def metric_noise(agents_paf, acc_args_taf_plus):
 
 		append(len_bullshit)
 
-	mean_bullshit, std_bullshit = mean(bullshit), std(bullshit)
+	mean_bullshit, std_bullshit = mean(bullshit, dtype=np.float32), std(bullshit, dtype=np.float32)
 
 	return mean_bullshit, std_bullshit
 
@@ -328,7 +328,7 @@ def metric_signal_and_noise(agents_paf, acc_args_taf_plus, num_args):
 		noise.append(noise_ag)
 
 	#print("final:", mean(signal), mean(noise))
-	return mean(signal), std(signal), mean(noise), std(noise)
+	return mean(signal, dtype=np.float32), std(signal, dtype=np.float32), mean(noise, dtype=np.float32), std(noise,dtype=np.float32)
 
 
 def metric_bis_1(agents_paf):
@@ -340,6 +340,6 @@ def metric_bis_1(agents_paf):
 	for agent in agents_paf:
 		n_ag_acc_args = len(agent.get_acceptable_arguments())
 		num.append(n_ag_acc_args)
-	return mean(num)
+	return mean(num, dtype=np.float32)
 
 

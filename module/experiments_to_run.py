@@ -5,6 +5,7 @@ from experiments import *
 from datetime import datetime
 import os
 import random
+import numpy as np
 from numpy import mean, std
 
 def get_agent_from_name(name, agents):
@@ -171,19 +172,19 @@ def exp(idn, number_agents, alternatives_number, maximum_number_practical_argume
 	data_to_save.write(str(num_agents_RI) + " ")
 	#data_to_save.write(str(bullshiters_density) + " ")  REPETIDO
 	#data_to_save.write(str(overcautios_density) + " ")  REPETIDO
-	data_to_save.write(str(mean(D_mean_l)) + " ")
-	data_to_save.write(str(std(D_mean_l)) + " ")
+	data_to_save.write(str(mean(D_mean_l, dtype=np.float32)) + " ")
+	data_to_save.write(str(std(D_mean_l, dtype=np.float32)) + " ")
 	#data_to_save.write(str(resource_boundness_density) + " ")  REPETIDO
-	data_to_save.write(str(mean(time_neg_mean_l)) + " ")
-	data_to_save.write(str(std(time_neg_mean_l)) + " ")
-	data_to_save.write(str(mean(FP_mean_l)) + " ")
-	data_to_save.write(str(std(FP_mean_l)) + " ")
-	data_to_save.write(str(mean(FN_mean_l)) + " ")
-	data_to_save.write(str(std(FN_mean_l)) + " ")
-	data_to_save.write(str(mean(TP_mean_l)) + " ")
-	data_to_save.write(str(std(TP_mean_l)) + " ")
-	data_to_save.write(str(mean(TN_mean_l)) + " ")
-	data_to_save.write(str(std(TN_mean_l)) + " ")
+	data_to_save.write(str(mean(time_neg_mean_l, dtype=np.float32)) + " ")
+	data_to_save.write(str(std(time_neg_mean_l, dtype=np.float32)) + " ")
+	data_to_save.write(str(mean(FP_mean_l, dtype=np.float32)) + " ")
+	data_to_save.write(str(std(FP_mean_l, dtype=np.float32)) + " ")
+	data_to_save.write(str(mean(FN_mean_l, dtype=np.float32)) + " ")
+	data_to_save.write(str(std(FN_mean_l, dtype=np.float32)) + " ")
+	data_to_save.write(str(mean(TP_mean_l, dtype=np.float32)) + " ")
+	data_to_save.write(str(std(TP_mean_l, dtype=np.float32)) + " ")
+	data_to_save.write(str(mean(TN_mean_l, dtype=np.float32)) + " ")
+	data_to_save.write(str(std(TN_mean_l, dtype=np.float32)) + " ")
 	#data_to_save.write(str(mean(bullshit_mean_l)) + " ")
 	#data_to_save.write(str(mean(bullshit_std_l)) + " ")
 	#data_to_save.write(str(mean(gwc_mean_l)) + " ")
@@ -193,18 +194,18 @@ def exp(idn, number_agents, alternatives_number, maximum_number_practical_argume
 	#data_to_save.write(str(redundancy) + " ")   REPETIDO
 	#data_to_save.write(str(mean(red_init_m)) + " ")
 	#data_to_save.write(str(mean(red_init_s)) + " ")
-	data_to_save.write(str(mean(red_mean_l)) + " ")
-	data_to_save.write(str(std(red_mean_l)) + " ")
+	data_to_save.write(str(mean(red_mean_l, dtype=np.float32)) + " ")
+	data_to_save.write(str(std(red_mean_l, dtype=np.float32)) + " ")
 
-	data_to_save.write(str(mean(signal_mean_l)) + " ")
-	data_to_save.write(str(std(signal_mean_l)) + " ")
-	data_to_save.write(str(mean(noise_mean_l)) + " ")
-	data_to_save.write(str(std(noise_mean_l)) + " ")
-	snm = mean(signal_mean_l) + mean(noise_mean_l)
+	data_to_save.write(str(mean(signal_mean_l, dtype=np.float32)) + " ")
+	data_to_save.write(str(std(signal_mean_l, dtype=np.float32)) + " ")
+	data_to_save.write(str(mean(noise_mean_l, dtype=np.float32)) + " ")
+	data_to_save.write(str(std(noise_mean_l, dtype=np.float32)) + " ")
+	snm = mean(signal_mean_l, dtype=np.float32) + mean(noise_mean_l, dtype=np.float32)
 	data_to_save.write(str(snm) + " ")
 
-	data_to_save.write(str(mean(m_bis_1)) + " ")
-	data_to_save.write(str(std(m_bis_1)) + "\n")
+	data_to_save.write(str(mean(m_bis_1, dtype=np.float32)) + " ")
+	data_to_save.write(str(std(m_bis_1, dtype=np.float32)) + "\n")
 
 
 
